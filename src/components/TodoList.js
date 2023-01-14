@@ -3,18 +3,13 @@ import Notask from "./Notask";
 
 const TodoList = ({
   todos,
-  setTodos,
   setEditTodo,
   setModal,
-  deleteConfirm,
+  setcurrTodo
 }) => {
   const handleDelete = ({ id }) => {
     setModal(true);
-    if (deleteConfirm) {
-      console.log(deleteConfirm);
-      setTodos(todos.filter((todo) => todo.id !== id));
-      setEditTodo();
-    }
+    setcurrTodo(id);
   };
   const handleEdit = ({ id }) => {
     const findTodo = todos.find((todo) => todo.id === id);

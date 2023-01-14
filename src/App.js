@@ -12,12 +12,16 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [editTodo, setEditTodo] = useState(null);
   const [Modal, setModal] = useState(false);
-  const [deleteConfirm, setDeleteConfirm] = useState(null);
-  const [Confirm, setConfirm] = useState(null);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [currTodo, setcurrTodo] = useState(null);
 
   useEffect(() => {
-    if (Confirm) {
-      setDeleteConfirm(true);
+    console.log("useEffect",currTodo,deleteConfirm);
+
+    if (deleteConfirm) {
+        setTodos(todos.filter((todo) => todo.id !== currTodo));
+        setDeleteConfirm(false)
+        setEditTodo();
     }
 
     if (editTodo) {
@@ -27,7 +31,7 @@ function App() {
       setInput("");
       setTitle("");
     }
-  }, [setInput, editTodo, setDeleteConfirm, Confirm]);
+  }, [setInput, editTodo, setDeleteConfirm, currTodo, setcurrTodo, deleteConfirm, setDeleteConfirm]);
 
   return (
     <div className="App">
@@ -49,15 +53,10 @@ function App() {
         </div>
         <div>
           <TodoList
-            todos={todos}
-            setTodos={setTodos}
-            editTodo={editTodo}
-            setEditTodo={setEditTodo}
-            Modal={Modal}
-            setModal={setModal}
-            deleteConfirm={deleteConfirm}
-            setDeleteConfirm={setDeleteConfirm}
-            Confirm={Confirm}
+          todos={todos}
+          setEditTodo={setEditTodo}
+          setModal={setModal}
+          setcurrTodo={setcurrTodo}
           />
         </div>
         <div>
@@ -66,8 +65,6 @@ function App() {
             setModal={setModal}
             deleteConfirm={deleteConfirm}
             setDeleteConfirm={setDeleteConfirm}
-            Confirm={Confirm}
-            setConfirm={setConfirm}
           />
         </div>
       </div>
