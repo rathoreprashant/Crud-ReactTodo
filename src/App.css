@@ -191,6 +191,7 @@
   padding-bottom: 30px;
   height: 200px;
   text-align: center;
+  border: 2px solid #a35709;
   border-radius: 4px;
 }
 .btn-DeleteConfirm-close {

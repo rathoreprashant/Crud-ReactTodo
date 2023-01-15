@@ -12,7 +12,18 @@ const Deletepopup = ({
   };
   return (
     <div>
-      <ReactModal className="modall" isOpen={Modal}>
+      <ReactModal
+      style={{
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, 0.7)'
+        }
+      }}
+      className="modall" isOpen={Modal}
+      // close={}
+      onRequestClose={() => {
+        setModal(false);
+      }}
+      >
         <button
           className="btn-DeleteConfirm-close"
           onClick={() => setModal(false)}
